@@ -8,13 +8,13 @@ import {Checkbox} from '@atlaskit/checkbox';
 import {RadioGroup} from '@atlaskit/radio';
 import Form, {Field, CheckboxField, FormFooter, Fieldset} from '@atlaskit/form';
 import EditIcon from "../core/component/icons/Edit";
-
+import {SFButton} from "../core/component/utils";
 
 const actionsContent = (
     <ButtonGroup>
-        <Button appearance="warning">Edit</Button>
-        <Button appearance="primary">Save</Button>
-        <Button>Refresh</Button>
+        <SFButton warning>Edit</SFButton>
+        <SFButton primary>Save</SFButton>
+        <SFButton primary>Refresh</SFButton>
         <Button>...</Button>
     </ButtonGroup>
 );

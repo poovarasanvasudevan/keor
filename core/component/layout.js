@@ -107,7 +107,7 @@ const DefButton = ({icon}) => {
             <icon/>
         </AkGlobalItem>
     </Tooltip>
-}
+};
 
 
 const GlobalCreateIcon = ({openDrawer}: { openDrawer: string => void }) => (
@@ -277,8 +277,8 @@ export default class AppLayout extends React.Component<*, *> {
                                     onClick={this.onClick}
                                     isOpen={this.state.isListOpen}
                                     trigger={<AkGlobalItem size="medium">
-                                        <SettingIcon/>
-                                    </AkGlobalItem>}
+                                                <SettingIcon/>
+                                             </AkGlobalItem>}
                                 >
                                     <ItemGroup>
                                         <Item onClick={() => Router.push('/settings')}>System Settings</Item>
