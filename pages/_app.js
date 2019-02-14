@@ -2,6 +2,8 @@ import React from 'react'
 import App, {Container} from 'next/app'
 import Head from 'next/head'
 import Launcher from "../core/component/chat/components/Launcher";
+import AppProvider from '../core/component/AppProvider'
+
 
 class Layout extends React.Component {
 
@@ -21,11 +23,12 @@ class Layout extends React.Component {
                 messageList: [...this.state.messageList, {
                     author: 'them',
                     type: 'text',
-                    data: { text }
+                    data: {text}
                 }]
             })
         }
     };
+
     render() {
         const {children} = this.props;
         return <div className='layout'>
@@ -48,18 +51,20 @@ export default class MyApp extends App {
     render() {
         const {Component, pageProps} = this.props;
         return <Container>
-            <Head>
-                <link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet" />
-                <link rel="stylesheet" href="/static/app.css" />
-                <script src='/static/js/polyfills.js'></script>
+            <AppProvider>
+                <Head>
+                    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet"/>
+                    <link rel="stylesheet" href="/static/app.css"/>
+                    <script src='/static/js/polyfills.js'></script>
 
-                <title>Service Focus</title>
+                    <title>Service Focus</title>
 
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-            </Head>
-            <Layout>
-                <Component {...pageProps} />
-            </Layout>
+                    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                </Head>
+                <Layout>
+                    <Component {...pageProps} />
+                </Layout>
+            </AppProvider>
         </Container>
     }
 }

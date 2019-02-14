@@ -10,9 +10,8 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({dev});
 const handle = app.getRequestHandler();
 
-var Parse = require('parse/node');
-
-
+const Parse = require('parse/node');
+const db = require('./core/server/database');
 
 app.prepare()
     .then(() => {
@@ -29,7 +28,6 @@ app.prepare()
         server.use("/sse", sseRouter);
 
 
-
         var ParseServer = require('parse-server').ParseServer;
         var api = new ParseServer({
             databaseURI: 'mongodb://localhost:27017/dev', // Connection string for your MongoDB database
@@ -37,10 +35,10 @@ app.prepare()
             appId: 'myAppId',
             masterKey: 'myMasterKey', // Keep this key secret!
             fileKey: 'optionalFileKey',
-            javaScriptKey : 'jsKey',
+            javaScriptKey: 'jsKey',
             serverURL: 'http://localhost:3000/parse' // Don't forget to change to https if needed
         });
-        server.use('/parse' ,api);
+        server.use('/parse', api);
 
         var ParseDashboard = require('parse-dashboard');
         var dashboard = new ParseDashboard({
@@ -53,7 +51,7 @@ app.prepare()
                 }
             ]
         });
-        server.use('/dashboard' , dashboard);
+        server.use('/dashboard', dashboard);
 
 
         Parse.initialize("myAppID", "jsKey", "myMasterKey");
@@ -84,6 +82,8 @@ app.prepare()
         server.listen(port, (err) => {
             if (err) throw err;
             console.log(`> Ready on http://localhost:${port}`)
+            //  server.start();
+
         })
     });
 

@@ -8,54 +8,80 @@ import {Checkbox} from '@atlaskit/checkbox';
 import {RadioGroup} from '@atlaskit/radio';
 import Form, {Field, CheckboxField, FormFooter, Fieldset} from '@atlaskit/form';
 import EditIcon from "../core/component/icons/Edit";
-import {SFButton} from "../core/component/utils";
+import {PrimaryButton, WarningButton, NormalButton} from "../core/component/utils";
+import React from "react";
+import styled from "styled-components";
+import {withContext} from "../core/component/context";
 
 const actionsContent = (
     <ButtonGroup>
-        <SFButton warning>Edit</SFButton>
-        <SFButton primary>Save</SFButton>
-        <SFButton primary>Refresh</SFButton>
-        <Button>...</Button>
+        <WarningButton>Edit</WarningButton>
+        <PrimaryButton>Save</PrimaryButton>
+        <PrimaryButton>Refresh</PrimaryButton>
+        <NormalButton>...</NormalButton>
     </ButtonGroup>
 );
 const breadcrumbs = (
-    <BreadcrumbsStateless onExpand={() => {}}>
+    <BreadcrumbsStateless onExpand={() => {
+    }}>
         <BreadcrumbsItem text="Home" key="Some project" onClick={() => Router.push("/")}/>
         <BreadcrumbsItem text="Application Settings" key="Parent page" onClick={() => Router.push("/settings")}/>
     </BreadcrumbsStateless>
 );
 
 const HeaderDiv = () => (
-    <PageHeader breadcrumbs={breadcrumbs} actions={actionsContent}>
-        Application Settings
-    </PageHeader>
+    <PageHeader breadcrumbs={breadcrumbs} actions={actionsContent}>Application Settings</PageHeader>
 );
 
 
-export default () => (
-    <AppLayout>
-        <HeaderDiv/>
-        <Form onSubmit={data => console.log(data)}>
-            {({formProps}) => (
-                <form {...formProps}>
-                    <Fieldset legend="Notifications">
-                        <CheckboxField name="notifications" value="APPROVAL">
-                            {({fieldProps}) => <Checkbox {...fieldProps} label="Approval Notifications"/>}
-                        </CheckboxField>
-                        <CheckboxField name="notifications" value="MEMORY">
-                            {({fieldProps}) => (
-                                <Checkbox {...fieldProps} label="Memory Notifications"/>
-                            )}
-                        </CheckboxField>
-                        <CheckboxField name="notifications" value="LOGS">
-                            {({fieldProps}) => (
-                                <Checkbox {...fieldProps} label="System Logs"/>
-                            )}
-                        </CheckboxField>
-                    </Fieldset>
+const CustomFieldset = styled(Fieldset)`
+    padding : 20px;
+`;
 
-                </form>
-            )}
-        </Form>
-    </AppLayout>
-)
+
+class SettingsPage extends React.Component {
+
+    componentDidMount(): void {
+        console.log(this.props.context);
+
+        this.props.context.subscribe('test', this.testData.bind(this));
+        this.props.context.publish('test', "testdata");
+    }
+
+    testData = (data) => {
+        console.log(data)
+    };
+
+    render(): React.ReactNode {
+        return (
+            <AppLayout>
+                <HeaderDiv/>
+                <Form onSubmit={data => console.log(data)}>
+                    {({formProps}) => (
+                        <form {...formProps}>
+                            <CustomFieldset legend="Notifications">
+                                <CheckboxField name="notifications" value="APPROVAL">
+                                    {({fieldProps}) => <Checkbox {...fieldProps}
+                                                                 label="Approval Notifications"/>}
+                                </CheckboxField>
+                                <CheckboxField name="notifications" value="MEMORY">
+                                    {({fieldProps}) => (
+                                        <Checkbox {...fieldProps} label="Memory Notifications"/>
+                                    )}
+                                </CheckboxField>
+                                <CheckboxField name="notifications" value="LOGS">
+                                    {({fieldProps}) => (
+                                        <Checkbox {...fieldProps} label="System Logs"/>
+                                    )}
+                                </CheckboxField>
+                            </CustomFieldset>
+                        </form>
+                    )}
+                </Form>
+            </AppLayout>
+        )
+    }
+}
+
+
+export default withContext(SettingsPage)

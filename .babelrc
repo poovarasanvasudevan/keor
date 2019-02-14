@@ -3,6 +3,12 @@
     "next/babel"
   ],
   "plugins": [
-    "transform-flow-strip-types"
+    "transform-flow-strip-types",
+    ["styled-components", {
+      "ssr": true ,
+      "displayName": false,
+      "minify": true,
+      "pure": true
+    }]
   ]
 }

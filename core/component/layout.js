@@ -65,6 +65,7 @@ const gridSize = gridSizeFn();
 import appcss from '../style/app.css'
 import Avatar from "@atlaskit/avatar";
 
+
 const SkeletonItemsWrapper = styled.div`
   padding-right: ${gridSize * 3}px;
 `;
@@ -136,6 +137,9 @@ export default class AppLayout extends React.Component<*, *> {
         stack: [<SkeletonContainerItems/>],
         width: this.props.width,
     };
+
+    componentDidMount(): void {
+    }
 
     getStarCustomDrawer = () => (
         <AkCustomDrawer
@@ -242,9 +246,9 @@ export default class AppLayout extends React.Component<*, *> {
                             />
                         )}
                         globalPrimaryIcon={
-                            <Link href="/">
+                            <div onClick={() => Router.push('/')}>
                                 <LogoIcon label="Confluence icon" size="large"/>
-                            </Link>
+                            </div>
                         }
 
                         globalPrimaryActions={[
@@ -269,27 +273,32 @@ export default class AppLayout extends React.Component<*, *> {
                                 </AkGlobalItem>
                             </Tooltip>,
                             <Tooltip content="Settings" position="right">
-                                <DropList
-                                    appearance="default"
-                                    isMenuFixed={false}
-                                    isTriggerNotTabbable
-                                    onOpenChange={this.onOpenChange}
-                                    onClick={this.onClick}
-                                    isOpen={this.state.isListOpen}
-                                    trigger={<AkGlobalItem size="medium">
-                                                <SettingIcon/>
-                                             </AkGlobalItem>}
-                                >
-                                    <ItemGroup>
-                                        <Item onClick={() => Router.push('/settings')}>System Settings</Item>
-                                        <Item>Notification Settings</Item>
-                                    </ItemGroup>
-                                </DropList>
+                                <AkGlobalItem size="medium" onClick={() => Router.push('/settings')}>
+                                    <SettingIcon/>
+                                </AkGlobalItem>
+                                {/*<DropList*/}
+                                {/*appearance="default"*/}
+                                {/*isMenuFixed={false}*/}
+                                {/*isTriggerNotTabbable*/}
+                                {/*onOpenChange={this.onOpenChange}*/}
+                                {/*onClick={this.onClick}*/}
+                                {/*isOpen={this.state.isListOpen}*/}
+                                {/*trigger={<AkGlobalItem size="medium">*/}
+                                {/*<SettingIcon/>*/}
+                                {/*</AkGlobalItem>}*/}
+                                {/*>*/}
+                                {/*<ItemGroup>*/}
+                                {/*<Item onClick={() => Router.push('/settings')}>System Settings</Item>*/}
+                                {/*<Item>Notification Settings</Item>*/}
+                                {/*</ItemGroup>*/}
+                                {/*</DropList>*/}
 
                             </Tooltip>,
 
                             <AkGlobalItem size="medium">
-                                <Avatar name="Poovarasan Vasudevan" size="small" presence="online"/>
+                                <Avatar name="Poovarasan Vasudevan"
+                                        src={"https://avatars0.githubusercontent.com/u/8036283?s=400&v=4"} size="small"
+                                        presence="online"/>
                             </AkGlobalItem>,
                         ]}
 
