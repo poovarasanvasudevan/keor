@@ -59,6 +59,7 @@
     "styled-components": "^3.2.6"
   },
   "devDependencies": {
+    "@atlaskit/quick-search": "^5.2.5",
     "babel-eslint": "8.2.6",
     "babel-plugin-styled-components": "^1.10.0",
     "babel-plugin-transform-flow-strip-types": "6.22.0",

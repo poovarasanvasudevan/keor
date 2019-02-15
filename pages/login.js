@@ -12,6 +12,7 @@ import Form, {
     ErrorMessage,
     ValidMessage,
 } from '@atlaskit/form';
+import {PrimaryButton} from "../core/component/utils";
 
 export default class Login extends React.Component {
 
@@ -67,9 +68,9 @@ export default class Login extends React.Component {
                                     </CheckboxField>
                                     <FormFooter>
                                         <ButtonGroup>
-                                            <Button type="submit" appearance="primary" isLoading={submitting}>
+                                            <PrimaryButton type="submit" appearance="primary" isLoading={submitting}>
                                                 Login
-                                            </Button>
+                                            </PrimaryButton>
                                         </ButtonGroup>
                                     </FormFooter>
                                 </form>

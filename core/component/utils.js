@@ -1,15 +1,16 @@
 import styled, {css} from 'styled-components'
-
-export const NormalButton = styled.button`  
-      font-family: 'Work Sans', sans-serif;
+import Button from "@atlaskit/button";
+import {
+    Item
+} from '@atlaskit/navigation-next';
+export const NormalButton = styled(Button)`  
+      font-family: 'Work Sans', sans-serif !important;
       background : #cccccc;  
       border : 2px solid #cccccc; 
       color: black;
-      font-size: 1em;
-      margin-bottom: 1em;
-      margin-top: 1em;
-      padding: 0.25em 0.75em;
-      border-radius: 3px;
+      font-size: 1em !important;
+      padding: -0.75em 0.75em !important;
+      border-radius: 3px !important;
       
       &:hover {
           cursor : pointer;
@@ -54,4 +55,9 @@ export const DangerButtonOutline = styled(NormalButton)`
      background: #FFFFFF !important; 
      border : 2px solid #EA4335 !important;
      color: #EA4335 !important;
+`;
+
+
+export const CustomItem = styled(Item)`
+    background : white !important;
 `;

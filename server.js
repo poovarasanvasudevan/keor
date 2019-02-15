@@ -11,7 +11,6 @@ const app = next({dev});
 const handle = app.getRequestHandler();
 
 const Parse = require('parse/node');
-const db = require('./core/server/database');
 
 app.prepare()
     .then(() => {
@@ -77,7 +76,6 @@ app.prepare()
         webRouter.get('*', (req, res) => {
             return handle(req, res)
         });
-
 
         server.listen(port, (err) => {
             if (err) throw err;

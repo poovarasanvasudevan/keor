@@ -1,0 +1,22 @@
+[
+  {
+    "resultId": "result_1",
+    "name": "Service Request",
+    "containerName": "Create Service Request"
+  },
+  {
+    "resultId": "result_2",
+    "name": "Problem Ticket",
+    "containerName": "Create Problem Ticket"
+  },
+  {
+    "resultId": "result_3",
+    "name": "Change Request",
+    "containerName": "Create Change Request"
+  },
+  {
+    "resultId": "result_4",
+    "name": "Vacation Request",
+    "containerName": "Create Vacation Request"
+  }
+]

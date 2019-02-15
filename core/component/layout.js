@@ -5,18 +5,8 @@ import React, {
     type Node,
 } from 'react';
 import {
-    ContainerHeader,
-    GlobalNav,
-    GroupHeading,
-    HeaderSection,
-    Item as ItemComponent,
-    ItemAvatar,
-    MenuSection,
-    Separator,
-    Wordmark,
-    GlobalItem,
-    LayoutManager,
-    NavigationProvider,
+    ItemPrimitive,
+    Item
 } from '@atlaskit/navigation-next';
 import AppsIcon from './icons/Apps'
 import {DropdownItemGroup, DropdownItem} from '@atlaskit/dropdown-menu';
@@ -28,7 +18,7 @@ import Badge from '@atlaskit/badge';
 import {
     DropdownMenuStateless,
 } from '@atlaskit/dropdown-menu';
-import Drawer from '@atlaskit/drawer';
+import Drawer, {DrawerItemTheme} from '@atlaskit/drawer';
 import Link from 'next/link'
 import {EventSourcePolyfill} from 'event-source-polyfill';
 import Router from 'next/router'
@@ -41,7 +31,7 @@ import ArrowLeftIcon from "./icons/ArrowLeft";
 import Tooltip from '@atlaskit/tooltip';
 import styled from 'styled-components';
 import Page, {Grid, GridColumn} from '@atlaskit/page';
-import Item, {ItemGroup} from '@atlaskit/item';
+import {ItemGroup} from '@atlaskit/item';
 import DropList from '@atlaskit/droplist';
 import Navigation, {
     AkContainerNavigationNested,
@@ -55,6 +45,11 @@ import Navigation, {
     SkeletonContainerItems,
 } from '@atlaskit/navigation';
 import BellIcon from "./icons/Bell";
+import {colors} from '@atlaskit/theme';
+import {ResultItemGroup, ObjectResult} from '@atlaskit/quick-search';
+
+import menu from './datasource/menu'
+//import addDrawerMenu from './json/new_drawer_menu'
 
 type GlobalItemWithDropdownProps = {
     items: Node,
@@ -64,6 +59,12 @@ type GlobalItemWithDropdownState = { isOpen: boolean };
 const gridSize = gridSizeFn();
 import appcss from '../style/app.css'
 import Avatar from "@atlaskit/avatar";
+import ApprovalIcon from "./icons/Approval";
+import ReportIcon from "./icons/Reports";
+import ArrowLeftWhiteIcon from "./icons/ArrowLeftWhite";
+import ServiceRequestIcon from "./icons/ServiceRequest";
+import ProblemTicketIcon from "./icons/ProblemTicket";
+import {CustomItem} from "./utils";
 
 
 const SkeletonItemsWrapper = styled.div`
@@ -81,7 +82,7 @@ const ContainerHeaderComponent = ({stackLength, goBackHome,}: { stackLength: num
         <SkeletonDefaultContainerHeader/>
         {stackLength > 1 ? (
             <AkNavigationItem
-                icon={<ArrowLeftIcon label="Add-ons icon"/>}
+                icon={<ArrowLeftWhiteIcon label="Add-ons icon"/>}
                 onClick={() => goBackHome()}
                 onKeyDown={(event: KeyboardEvent) => {
                     if (event.key === 'Enter') {
@@ -134,11 +135,25 @@ export default class AppLayout extends React.Component<*, *> {
         isListOpen: false,
         menuLoading: true,
         openDrawer: null,
-        stack: [<SkeletonContainerItems/>],
+        stack: [[
+            <AkNavigationItem
+                text="Approvals"
+                icon={<ApprovalIcon label="Activity icon" size="medium"/>}
+                onClick={() => Router.push("/approval")}
+                key="approval"
+            />,
+            <AkNavigationItem
+                text="Reports & Papers"
+                icon={<ReportIcon label="Activity icon" size="medium"/>}
+                onClick={() => Router.push("/reports")}
+                key="reports"
+            />
+        ]],
         width: this.props.width,
     };
 
     componentDidMount(): void {
+
     }
 
     getStarCustomDrawer = () => (
@@ -161,6 +176,7 @@ export default class AppLayout extends React.Component<*, *> {
             backIcon={BackIcon}
             isOpen={this.state.openDrawer === 'search'}
             key="search"
+            width="wide"
             primaryIcon={<LogoIcon label="Confluence icon" size="large"/>}
             onBackButton={this.closeDrawer}
         >
@@ -175,12 +191,17 @@ export default class AppLayout extends React.Component<*, *> {
             backIcon={BackIcon}
             isOpen={this.state.openDrawer === 'create'}
             key="create"
+            width="medium"
             primaryIcon={<LogoIcon label="Confluence icon" size="large"/>}
-            onBackButton={this.closeDrawer}
-        >
-            <SkeletonItemsWrapper>
-                <SkeletonContainerItems itemTextWidth="100%"/>
-            </SkeletonItemsWrapper>
+            onBackButton={this.closeDrawer}>
+
+            <DrawerItemTheme>
+                <div style={{paddingRight: '20px'}}>
+                    <ResultItemGroup title="Most Used">
+                        {menu.mostUsed.map((menuObj) => <ObjectResult key={menuObj.resultId} {...menuObj} />)}
+                    </ResultItemGroup>
+                </div>
+            </DrawerItemTheme>
         </AkCreateDrawer>
     );
 
@@ -204,6 +225,8 @@ export default class AppLayout extends React.Component<*, *> {
             isOpen: resizeState.isOpen,
             width: resizeState.width,
         });
+
+        localStorage.setItem("draweropen", resizeState.isOpen)
     };
 
     goBackHome = () => {
