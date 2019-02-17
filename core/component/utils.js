@@ -3,6 +3,7 @@ import Button from "@atlaskit/button";
 import {
     Item
 } from '@atlaskit/navigation-next';
+import {DropdownItemCheckbox, DropdownItemGroup, DropdownItemGroupCheckbox,DropdownItem} from "@atlaskit/dropdown-menu";
 export const NormalButton = styled(Button)`  
       font-family: 'Work Sans', sans-serif !important;
       background : #cccccc;  
@@ -60,4 +61,22 @@ export const DangerButtonOutline = styled(NormalButton)`
 
 export const CustomItem = styled(Item)`
     background : white !important;
+`;
+
+export const DropdownCheckboxContainer = styled(DropdownItemCheckbox)`
+    text-align : left !important;
+    font-family: 'Work Sans', sans-serif;
+`;
+export const DropdownCheckboxItemContainer = styled(DropdownItemGroupCheckbox)`
+    text-align : left !important;
+    font-family: 'Work Sans', sans-serif;
+`;
+
+export const DropdownContainer = styled(DropdownItemGroup)`
+    text-align : left !important;
+    font-family: 'Work Sans', sans-serif;
+`;
+export const CustomDropdownItem = styled(DropdownItem)`
+    text-align : left !important;
+    font-family: 'Work Sans', sans-serif;
 `;

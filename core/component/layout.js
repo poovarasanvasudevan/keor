@@ -286,7 +286,7 @@ export default class AppLayout extends React.Component<*, *> {
 
                         globalSecondaryActions={[
                             <Tooltip content="Applications" position="right">
-                                <AkGlobalItem size="medium">
+                                <AkGlobalItem size="medium" onClick={() => Router.push('/applications')}>
                                     <AppsIcon/>
                                 </AkGlobalItem>
                             </Tooltip>,

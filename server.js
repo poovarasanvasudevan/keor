@@ -11,7 +11,8 @@ const app = next({dev});
 const handle = app.getRequestHandler();
 
 const Parse = require('parse/node');
-
+const Config = require('./core/server/config')
+const database = require('./core/server/database')
 app.prepare()
     .then(() => {
         const server = express();
@@ -29,7 +30,7 @@ app.prepare()
 
         var ParseServer = require('parse-server').ParseServer;
         var api = new ParseServer({
-            databaseURI: 'mongodb://localhost:27017/dev', // Connection string for your MongoDB database
+            databaseURI: Config.database, // Connection string for your MongoDB database
             cloud: 'core/code/main.js', // Absolute path to your Cloud Code
             appId: 'myAppId',
             masterKey: 'myMasterKey', // Keep this key secret!

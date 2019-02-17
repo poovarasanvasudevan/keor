@@ -3,6 +3,7 @@ import {BreadcrumbsStateless, BreadcrumbsItem} from '@atlaskit/breadcrumbs';
 import PageHeader from '@atlaskit/page-header';
 import Router from 'next/router'
 import React from 'react'
+import {DropdownCheckboxContainer, DropdownCheckboxItemContainer} from '../core/component/utils'
 
 import Dropdown, {
     DropdownItemCheckbox,
@@ -13,17 +14,8 @@ import Dropdown, {
 import styled from "styled-components";
 
 
-const DropdownCheckboxContainer = styled(DropdownItemCheckbox)`
-    text-align : left !important;
-    font-family: 'Work Sans', sans-serif;
-`;
-const DropdownCheckboxItemContainer = styled(DropdownItemGroupCheckbox)`
-    text-align : left !important;
-    font-family: 'Work Sans', sans-serif;
-`;
-
 const actionContent = (
-    <Dropdown trigger="Diagram" triggerType="button"  position="bottom right">
+    <Dropdown trigger="Diagram" triggerType="button" position="bottom right">
         <DropdownCheckboxItemContainer id="Diagram2">
             <DropdownCheckboxContainer id="dbQuery">DB Query</DropdownCheckboxContainer>
             <DropdownCheckboxContainer id="executionGraph">Execution Graph</DropdownCheckboxContainer>
@@ -34,7 +26,8 @@ const actionContent = (
 );
 
 const breadcrumbs = (
-    <BreadcrumbsStateless onExpand={() => {}}>
+    <BreadcrumbsStateless onExpand={() => {
+    }}>
         <BreadcrumbsItem text="Home" key="Some project" onClick={() => Router.push("/")}/>
         <BreadcrumbsItem text="Data Store" key="Parent page" onClick={() => Router.push("/database")}/>
     </BreadcrumbsStateless>
