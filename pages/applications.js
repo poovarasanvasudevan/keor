@@ -75,6 +75,7 @@ class ApplicationPage extends React.Component {
                 <CustomDropdownItem onClick={this.tableModelOpen}>Table</CustomDropdownItem>
                 <CustomDropdownItem onClick={this.functionModelOpen}>Function</CustomDropdownItem>
                 <CustomDropdownItem>Trigger</CustomDropdownItem>
+                <CustomDropdownItem>Endpoint</CustomDropdownItem>
             </DropdownContainer>
         </DropdownMenu>
     )
@@ -97,9 +98,7 @@ class ApplicationPage extends React.Component {
                         <Modal actions={this.tableModelAction}
                                onClose={this.close} heading="New Table">
                             <div>
-                                <Form
-                                    onSubmit={this.createTable}
-                                >
+                                <Form onSubmit={this.createTable}>
                                     {({formProps, submitting}) => (
                                         <form {...formProps}>
                                             <Field name="tablename" label="Table Name" isRequired defaultValue="">
