@@ -1,3 +1,3 @@
 module.exports = {
-    database : "postgres://postgres:poosan@localhost:5432/myappserver"
+    database : "postgres://postgres:123Welcome@localhost:5432/myappserver"
 };

@@ -6,7 +6,7 @@ import React from 'react'
 
 const breadcrumbs = (
     <BreadcrumbsStateless onExpand={() => {}}>
-        <BreadcrumbsItem text="Home" key="Some project" onClick={() => Router.push("/")}/>
+        <BreadcrumbsItem text="Home" key="Some project" onClick={() => Router.push("/home")}/>
         <BreadcrumbsItem text="Approval" key="Parent page" onClick={() => Router.push("/approval")}/>
     </BreadcrumbsStateless>
 );

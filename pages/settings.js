@@ -24,7 +24,7 @@ const actionsContent = (
 const breadcrumbs = (
     <BreadcrumbsStateless onExpand={() => {
     }}>
-        <BreadcrumbsItem text="Home" key="Some project" onClick={() => Router.push("/")}/>
+        <BreadcrumbsItem text="Home" key="Some project" onClick={() => Router.push("/home")}/>
         <BreadcrumbsItem text="Application Settings" key="Parent page" onClick={() => Router.push("/settings")}/>
     </BreadcrumbsStateless>
 );

@@ -15,6 +15,7 @@ const {
 
 const nextConfig = {
     distDir: 'build',
+    useFileSystemPublicRoutes: false,
     webpack: (config, options) => {
 
         config.module.rules.push({test: /\.(mp3|svg)$/,

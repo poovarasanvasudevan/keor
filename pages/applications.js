@@ -21,7 +21,6 @@ import Form, {
     ErrorMessage,
     Fieldset,
     ValidMessage,
-
 } from '@atlaskit/form';
 
 const Divider = () => (
@@ -58,7 +57,7 @@ class ApplicationPage extends React.Component {
     breadcrumbs = (
         <BreadcrumbsStateless onExpand={() => {
         }}>
-            <BreadcrumbsItem text="Home" key="Some project" onClick={() => Router.push("/")}/>
+            <BreadcrumbsItem text="Home" key="Some project" onClick={() => Router.push("/home")}/>
             <BreadcrumbsItem text="Applications" key="Parent page" onClick={() => Router.push("/applications")}/>
         </BreadcrumbsStateless>
     );
@@ -78,7 +77,7 @@ class ApplicationPage extends React.Component {
                 <CustomDropdownItem>Endpoint</CustomDropdownItem>
             </DropdownContainer>
         </DropdownMenu>
-    )
+    );
 
     createTable = (data) => {
 
@@ -94,6 +93,7 @@ class ApplicationPage extends React.Component {
 
 
                 <ModalTransition>
+
                     {this.state.isTableModelOpen && (
                         <Modal actions={this.tableModelAction}
                                onClose={this.close} heading="New Table">
@@ -145,7 +145,6 @@ class ApplicationPage extends React.Component {
                             </div>
                         </Modal>
                     )}
-
 
                     {this.state.isFunctionModelOpen && (
                         <Modal actions={this.functionModelAction}
@@ -199,7 +198,6 @@ class ApplicationPage extends React.Component {
                                         </form>
                                     )}
                                 </Form>
-
                             </div>
                         </Modal>
                     )}
